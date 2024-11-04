@@ -1,16 +1,18 @@
 import { Router } from "express"; // para crear sección de rutas o agrupar todas las rutas...
+import { getEmployees , createEmployee, updateEmployee, deleteEmployee } from "../controllers/employees.controller.js";
+
 
 //crear enrutador
 const router = Router()
 
 //grupos de rutas (usamos router en lugar de app)
-router.get('/employees', (req, res) => res.send('obteniendo empleados'))
+router.get('/employees', getEmployees)
 
-router.post('/employees', (req, res) => res.send('creando empleados'))
+router.post('/employees', createEmployee)
 
-router.put('/employees', (req, res) => res.send('actualizando empleados'))
+router.put('/employees', updateEmployee)
 
-router.delete('/employees', (req, res) => res.send('eliminando empleados'))
+router.delete('/employees', deleteEmployee)
 
 // y ok, una vez terminamos de escribir rutas, exportamos grupo de rutas creado
 export default router
