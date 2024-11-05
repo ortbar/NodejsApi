@@ -11,3 +11,10 @@ CREATE TABLE employee (
 );
 
 DESCRIBE employee;
+
+INSERT INTO employee (name, salary)
+VALUES 
+    ('Juan Pérez', 25000),
+    ('María López', 30000),
+    ('Carlos García', 28000),
+    ('Ana Fernández', 32000);
