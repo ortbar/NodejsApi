@@ -12,7 +12,7 @@ app.use(express.json())
 
 //para usar las rutas de employees
 app.use(indexRoutes)
-app.use(employeesRoutes)
+app.use('/api/',employeesRoutes) // colocamos prefijo api/ para todas las rutas de employees en el index
 
 app.listen(3000)
 console.log('server running on port 3000')
