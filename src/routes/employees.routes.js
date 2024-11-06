@@ -12,8 +12,8 @@ router.get('/employees/:id', getEmployee) // ponemos parametro /:id, en este cas
 
 
 router.post('/employees', createEmployee)
-
-router.put('/employees', updateEmployee)
+// cambiamos put por patch, para poder acutalizar parcialmente solo los campos especificados, permite actualizar de forma mas sencilla y eficiente
+router.patch('/employees/:id', updateEmployee)
 
 router.delete('/employees/:id', deleteEmployee)
 

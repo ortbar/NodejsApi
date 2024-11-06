@@ -2,6 +2,7 @@ import {pool} from '../db.js'
 
 export const getEmployees = async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM employee') // cualquier tipo de operacion con la bd, siempre será una consulta / funcion asincrona
+    
     res.json(rows);
 };
 
@@ -36,5 +37,20 @@ export const deleteEmployee = async (req, res) => {
     res.sendStatus(204)
 }
 
-export const updateEmployee = (req, res) => res.send('actualizando empleados');
+export const updateEmployee = async (req, res) => {
+    // const id = req.params.id
+    const {id} = req.params
+    const {name, salary} = req.body
+    //                                                             ifnull, si se le pasa un valor lo toma, si no, no lo toma si no que lo deja con el valor quie tenía.
+    const [result] = await pool.query('UPDATE employee SET name = IFNULL(?, name), salary = IFNULL(?, salary) WHERE id = ?', [name, salary, id])
+    console.log(result)
+
+    if (result.affectedRows === 0) return res.sendStatus(404).json({
+        messsage: 'employee not found'
+    })
+    const [rows] = await pool.query('SELECT * FROM employee WHERE id = ?' , [id])
+
+    res.json(rows[0])
+
+}
 
