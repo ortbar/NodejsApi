@@ -27,6 +27,14 @@ export const createEmployee = async (req, res) => {
      })
 }
 
+export const deleteEmployee = async (req, res) => {
+    const [result] = await pool.query('DELETE FROM employee WHERE id = ?', [req.params.id])
+    if (result.affectedRows <=0) return res.status(404).json({
+        message: 'employee not found'
+    })
+    //si la consulta es correcta, es decir si se elimina el registro, sólo mandamos el estado 204 para que el cliente lo sepa(se puede eliminar, pero no se devuelve nada)
+    res.sendStatus(204)
+}
+
 export const updateEmployee = (req, res) => res.send('actualizando empleados');
 
-export const deleteEmployee = (req, res) => res.send('eliminando empleados');

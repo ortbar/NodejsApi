@@ -15,7 +15,7 @@ router.post('/employees', createEmployee)
 
 router.put('/employees', updateEmployee)
 
-router.delete('/employees', deleteEmployee)
+router.delete('/employees/:id', deleteEmployee)
 
 // y ok, una vez terminamos de escribir rutas, exportamos grupo de rutas creado
 export default router
