@@ -14,5 +14,12 @@ app.use(express.json())
 app.use(indexRoutes)
 app.use('/api/',employeesRoutes) // colocamos prefijo api/ para todas las rutas de employees en el index
 
+//funcion middleware para cuando se visite una aplicacion cliente busca una ruta que no exite localhost:3000/adfasdfdsa
+app.use((req, res, next) => {
+    res.status(400).json({
+        message: 'endpoint not found'
+    })
+})
+
 app.listen(3000)
 console.log('server running on port 3000')
